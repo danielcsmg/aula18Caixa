@@ -1,9 +1,11 @@
-import kotlin.contracts.contract
+package exercicio1
+
+import exercicio1.exercicio1.Produto
 import kotlin.system.exitProcess
 
-class Caixa() {
-    var produtosCadastrados = ArrayList<Produto>()
-    var produtosVenda = ArrayList<Produto>()
+class Caixa {
+    private var produtosCadastrados = ArrayList<ProdutosNoEstoque>()
+    private var produtosVenda = ArrayList<Produto>()
 
     init {
         produtosBasicos()
@@ -11,10 +13,14 @@ class Caixa() {
     }
 
     fun produtosBasicos(){
-        produtosCadastrados.add(Produto(1, "Arroz", 20.50))
-        produtosCadastrados.add(Produto(2, "Feijão", 6.50))
-        produtosCadastrados.add(Produto(3, "Óleo", 10.00))
-        produtosCadastrados.add(Produto(4, "Pão", 3.99))
+        produtosCadastrados.add(ProdutosNoEstoque(1, "Arrois", 20.50))
+        produtosCadastrados.add(ProdutosNoEstoque(2, "Fejão", 6.50))
+        produtosCadastrados.add(ProdutosNoEstoque(3, "Lidiói", 10.00))
+        produtosCadastrados.add(ProdutosNoEstoque(4, "Pão di sar", 3.99))
+        produtosCadastrados.add(ProdutosNoEstoque(5, "Mantega", 3.99))
+        produtosCadastrados.add(ProdutosNoEstoque(6, "Quidicarne", 3.99))
+        produtosCadastrados.add(ProdutosNoEstoque(7, "Lidileite", 3.99))
+        produtosCadastrados.add(ProdutosNoEstoque(8, "Dusdiovo", 6.99))
     }
 
     fun cadastrarProdutos(){
@@ -29,7 +35,7 @@ class Caixa() {
                 println("Adicione o preço do produto:")
                 val precoProduto = readln().toDouble()
                 var verificador = false
-                produtosCadastrados.forEachIndexed{i, prod ->
+                produtosCadastrados.forEachIndexed{_, prod ->
                     if(prod.codigo == codigoProduto){
                         verificador = true
                     }
@@ -37,7 +43,7 @@ class Caixa() {
                 if(verificador){
                     println("Código já está em uso.")
                 }else {
-                    produtosCadastrados.add(Produto(codigoProduto, nomeProduto, precoProduto))
+                    produtosCadastrados.add(ProdutosNoEstoque(codigoProduto, nomeProduto, precoProduto))
                 }
             }else if(opc == "n"){
                 continue
@@ -85,7 +91,7 @@ class Caixa() {
                 }
                 "n" -> continue
                 else -> println("Opção inválida!")
-                }
+            }
         }while (opc != "n")
     }
 
